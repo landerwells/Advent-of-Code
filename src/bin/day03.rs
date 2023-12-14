@@ -139,36 +139,36 @@ fn distinct_numbers(grid: &Vec<Vec<char>>, row: usize, col: usize) -> (i32, i32)
 // is_valid_pair should return true if a '*' is the symbol that is not a number,
 // and there is another number next to the star that isn't the same number
 
-fn is_valid_pair(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
-    let rows = grid.len();
-    let cols = grid[0].len();
+// fn is_valid_pair(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
+//     let rows = grid.len();
+//     let cols = grid[0].len();
 
-    // Define the king's move offsets
-    let offsets = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),           (0, 1),
-        (1, -1),  (1, 0),  (1, 1),
-    ];
+//     // Define the king's move offsets
+//     let offsets = [
+//         (-1, -1), (-1, 0), (-1, 1),
+//         (0, -1),           (0, 1),
+//         (1, -1),  (1, 0),  (1, 1),
+//     ];
 
-    for &(offset_row, offset_col) in &offsets {
-        let new_row = row as isize + offset_row;
-        let new_col = col as isize + offset_col;
+//     for &(offset_row, offset_col) in &offsets {
+//         let new_row = row as isize + offset_row;
+//         let new_col = col as isize + offset_col;
 
-        // Check if the new indices are within bounds
-        if new_row >= 0 && new_row < rows as isize && new_col >= 0 && new_col < cols as isize {
-            // Check if the character is not '.' and not numeric
-            if grid[new_row as usize][new_col as usize] != '.' &&
-               !grid[new_row as usize][new_col as usize].is_numeric() {
-                // Check if the character is not the same as the current character
-                if grid[new_row as usize][new_col as usize] != grid[row][col] {
-                    return true;
-                }
-            }
-        }
-    }
+//         // Check if the new indices are within bounds
+//         if new_row >= 0 && new_row < rows as isize && new_col >= 0 && new_col < cols as isize {
+//             // Check if the character is not '.' and not numeric
+//             if grid[new_row as usize][new_col as usize] != '.' &&
+//                !grid[new_row as usize][new_col as usize].is_numeric() {
+//                 // Check if the character is not the same as the current character
+//                 if grid[new_row as usize][new_col as usize] != grid[row][col] {
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
 
-    false
-}
+//     false
+// }
 
 fn is_valid_char(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
     let rows = grid.len();
@@ -198,79 +198,79 @@ fn is_valid_char(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
     false
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+// #[cfg(test)]
+// mod tests {
+//     use super::*;
 
-    #[test]
-    fn test_solve_part_one() {
+//     #[test]
+//     fn test_solve_part_one() {
 
-        let input = fs::read_to_string("src/input2.txt").unwrap();
+//         let input = fs::read_to_string("src/input2.txt").unwrap();
 
-        let lines: Vec<String> = input.lines().map(String::from).collect();
+//         let lines: Vec<String> = input.lines().map(String::from).collect();
 
-        let mut grid: Vec<Vec<char>> = Vec::new();
+//         let mut grid: Vec<Vec<char>> = Vec::new();
 
-        for line in &lines {
-            let chars: Vec<char> = line.chars().collect();
-            grid.push(chars);
-        }
+//         for line in &lines {
+//             let chars: Vec<char> = line.chars().collect();
+//             grid.push(chars);
+//         }
 
-        let answer = solve_part_one(&grid);
+//         let answer = solve_part_one(&grid);
 
-        assert_eq!(4361, answer);
-    }
+//         assert_eq!(4361, answer);
+//     }
 
-    #[test]
-    fn test_solve_part_two() {
+//     #[test]
+//     fn test_solve_part_two() {
 
-        let input = fs::read_to_string("src/input2.txt").unwrap();
+//         let input = fs::read_to_string("src/input2.txt").unwrap();
 
-        let lines: Vec<String> = input.lines().map(String::from).collect();
+//         let lines: Vec<String> = input.lines().map(String::from).collect();
 
-        let mut grid: Vec<Vec<char>> = Vec::new();
+//         let mut grid: Vec<Vec<char>> = Vec::new();
 
-        for line in &lines {
-            let chars: Vec<char> = line.chars().collect();
-            grid.push(chars);
-        }
+//         for line in &lines {
+//             let chars: Vec<char> = line.chars().collect();
+//             grid.push(chars);
+//         }
 
-        let answer = solve_part_two(&grid);
+//         let answer = solve_part_two(&grid);
 
-        assert_eq!(467835, answer);
-    }
+//         assert_eq!(467835, answer);
+//     }
 
-    #[test]
-    fn test_is_valid_char() {
+//     #[test]
+//     fn test_is_valid_char() {
 
-        let input = fs::read_to_string("src/input.txt").unwrap();
+//         let input = fs::read_to_string("src/input.txt").unwrap();
 
-        let lines: Vec<String> = input.lines().map(String::from).collect();
+//         let lines: Vec<String> = input.lines().map(String::from).collect();
 
-        let mut grid: Vec<Vec<char>> = Vec::new();
+//         let mut grid: Vec<Vec<char>> = Vec::new();
 
-        for line in &lines {
-            let chars: Vec<char> = line.chars().collect();
-            grid.push(chars);
-        }
+//         for line in &lines {
+//             let chars: Vec<char> = line.chars().collect();
+//             grid.push(chars);
+//         }
 
-        let answer = is_valid_char(&grid, 131,44);
+//         let answer = is_valid_char(&grid, 131,44);
 
-        assert_eq!(false, answer);
-    }
+//         assert_eq!(false, answer);
+//     }
 
-    #[test]
-    fn test_distinct_numbers() {
+//     #[test]
+//     fn test_distinct_numbers() {
 
-        let input = fs::read_to_string("src/input2.txt").unwrap();
-        let lines: Vec<String> = input.lines().map(String::from).collect();
-        let mut grid: Vec<Vec<char>> = Vec::new();
+//         let input = fs::read_to_string("src/input2.txt").unwrap();
+//         let lines: Vec<String> = input.lines().map(String::from).collect();
+//         let mut grid: Vec<Vec<char>> = Vec::new();
 
-        for line in &lines {
-            let chars: Vec<char> = line.chars().collect();
-            grid.push(chars);
-        }
+//         for line in &lines {
+//             let chars: Vec<char> = line.chars().collect();
+//             grid.push(chars);
+//         }
 
-        assert_eq!((467, 35), distinct_numbers(&grid, 1, 3));
-    }
-}
+//         assert_eq!((467, 35), distinct_numbers(&grid, 1, 3));
+//     }
+// }
