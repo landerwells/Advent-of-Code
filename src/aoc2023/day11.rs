@@ -1,6 +1,6 @@
 use aochelpers;
 
-fn main() {
+pub fn run() {
     let input = aochelpers::get_daily_input(11, 2023).unwrap();
     println!("Day Eleven Answers:");
     println!("Part One: {}", solve_part_one(input.clone(), 2));

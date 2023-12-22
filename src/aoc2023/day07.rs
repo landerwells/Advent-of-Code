@@ -2,13 +2,12 @@ use std::{error::Error, collections::HashMap, cmp::Ordering};
 use aochelpers;
 use std::env;
 
-fn main() -> Result<(), Box<dyn Error>>{
+pub fn run() {
     env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(7, 2023).unwrap();
     let hands: HashMap<String, i64> = build_bids(input.as_str());
     println!("Part 1: {}", play_poker(&hands, |a,b| compare_hands(a, b, "23456789TJQKA")));
     println!("Part 2: {}", play_poker(&hands, |a,b| compare_hands(a, b, "J23456789TQKA")));
-    Ok(())
 }
 
 fn play_poker(hands: &HashMap<String, i64>, compare_hands: fn(&&String, &&String) -> Ordering ) -> i64 {

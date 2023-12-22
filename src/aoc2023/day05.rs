@@ -1,15 +1,14 @@
-use std::fs;
 use aochelpers;
 
 type Transformation = (std::ops::Range<usize>, i64);
 
-fn main() {
-    println!("Part One Solution: {}", solve_part_one("src/input.txt".to_string()));
+pub fn run() {
+    let input = aochelpers::get_daily_input(5, 2023).unwrap();
+    println!("Part One Solution: {}", solve_part_one(input));
     // println!("Part Two Solution: {}", solve_part_two("src/input.txt".to_string()));
 }
 
-fn solve_part_one(filename: String) -> i64 {
-    let input = fs::read_to_string(filename).unwrap();
+fn solve_part_one(input: String) -> i64 {
     let blocks: Vec<&str> = input.split("\n\n").collect();
 
     // Parse seeds
