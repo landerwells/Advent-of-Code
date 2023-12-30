@@ -18,18 +18,17 @@ fn solve_part_one(input: String) -> i64 {
         .collect();
 
     // Parse map layers
-    let map_layers: Vec<Vec<Transformation>> = blocks[1..]
-        .iter()
-        .map(|&b| parse_map(b))
-        .collect();
+    let map_layers: Vec<Vec<Transformation>> = blocks[1..].iter().map(|&b| parse_map(b)).collect();
 
     // Process seeds with transformations
     let result: Vec<i64> = seeds
         .iter()
         .map(|&seed| {
-            map_layers.iter().fold(seed, |current_seed, transformations| {
-                mask_number(current_seed, transformations)
-            })
+            map_layers
+                .iter()
+                .fold(seed, |current_seed, transformations| {
+                    mask_number(current_seed, transformations)
+                })
         })
         .collect();
 
@@ -102,7 +101,10 @@ fn parse_range(line: &str) -> Transformation {
     let source_start = parts.next().unwrap();
     let size = parts.next().unwrap();
 
-    (source_start..source_start + size, (dest_start as i64) - (source_start as i64))
+    (
+        source_start..source_start + size,
+        (dest_start as i64) - (source_start as i64),
+    )
 }
 
 fn do_ranges_overlap(a: std::ops::Range<usize>, b: std::ops::Range<usize>) -> bool {

@@ -55,7 +55,7 @@ fn solve_part_one(input: String, multiple: i32) -> i64 {
 
                 if !rows_to_add.is_empty() {
                     for i in &rows_to_add {
-                        if i < &coord1.0 && i > &coord2.0  {
+                        if i < &coord1.0 && i > &coord2.0 {
                             temp_coord1.0 += multiple as usize - 1;
                         } else if i > &coord1.0 && i < &coord2.0 {
                             temp_coord2.0 += multiple as usize - 1;
@@ -65,7 +65,7 @@ fn solve_part_one(input: String, multiple: i32) -> i64 {
 
                 if !columns_to_add.is_empty() {
                     for i in &columns_to_add {
-                        if i < &coord1.1 && i > &coord2.1  {
+                        if i < &coord1.1 && i > &coord2.1 {
                             temp_coord1.1 += multiple as usize - 1;
                         } else if i > &coord1.1 && i < &coord2.1 {
                             temp_coord2.1 += multiple as usize - 1;
@@ -75,7 +75,6 @@ fn solve_part_one(input: String, multiple: i32) -> i64 {
 
                 let distance = calculate_distance(temp_coord1, temp_coord2);
                 shortest_distance += distance;
-
             }
         }
     }
@@ -90,7 +89,6 @@ fn calculate_distance(coord1: (usize, usize), coord2: (usize, usize)) -> f64 {
     row_diff + col_diff
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -100,10 +98,8 @@ mod tests {
         assert_eq!(calculate_distance((1, 6), (5, 11)), 9.0);
     }
 
-
     #[test]
     fn test_solve_part_one() {
-
         let input_one = "...#......
 .......#..
 #.........
@@ -117,7 +113,5 @@ mod tests {
 
         assert_eq!(solve_part_one(input_one.to_string(), 10), 1030);
         assert_eq!(solve_part_one(input_one.to_string(), 100), 8410);
-
-
     }
 }

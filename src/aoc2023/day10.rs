@@ -1,6 +1,6 @@
+use aochelpers;
 use std::collections::VecDeque;
 use std::env;
-use aochelpers;
 
 const LEFT: i32 = 3;
 const RIGHT: i32 = 1;
@@ -43,7 +43,12 @@ fn interior_area(points: Vec<grid_point>) -> f64 {
     area_sum.abs() / 2.0
 }
 
-fn finish_loop(start_pos: (usize, usize), grid: Vec<Vec<char>>, start_direction: i32, points: &mut Vec<grid_point>) -> i32 {
+fn finish_loop(
+    start_pos: (usize, usize),
+    grid: Vec<Vec<char>>,
+    start_direction: i32,
+    points: &mut Vec<grid_point>,
+) -> i32 {
     let mut stack: VecDeque<(usize, usize, i32, i32)> = VecDeque::new();
     stack.push_back((start_pos.0, start_pos.1, start_direction, 1));
 

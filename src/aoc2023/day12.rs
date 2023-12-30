@@ -9,11 +9,11 @@ pub fn run() {
 }
 
 fn solve_part_one(input: String) -> i32 {
-  let lines: Vec<String> = input.lines().map(String::from).collect();
+    let lines: Vec<String> = input.lines().map(String::from).collect();
 
-  // for line in lines {
-  //   println!("{}", line);
-  // }
+    // for line in lines {
+    //   println!("{}", line);
+    // }
 
-  0
+    0
 }

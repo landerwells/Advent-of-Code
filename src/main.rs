@@ -1,6 +1,9 @@
 use std::env;
 
+mod utils;
 // mod 2022;
+mod aoc2015;
+mod aoc2022;
 mod aoc2023;
 // ... import other year modules
 
@@ -26,6 +29,10 @@ fn run_year(year: &str) {
 
 fn run_day(year: &str, day: &str) {
     match (year, day) {
+        ("2015", "01") => aoc2015::day01::run(),
+        ("2015", "02") => aoc2015::day02::run(),
+        ("2015", "03") => aoc2015::day03::run(),
+        ("2022", "01") => aoc2022::day01::run(),
         ("2023", "01") => aoc2023::day01::run(),
         ("2023", "02") => aoc2023::day02::run(),
         ("2023", "03") => aoc2023::day03::run(),
@@ -43,4 +50,3 @@ fn run_day(year: &str, day: &str) {
         _ => eprintln!("Invalid year or day"),
     }
 }
-

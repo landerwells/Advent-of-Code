@@ -5,7 +5,6 @@ pub fn run() {
     println!("Day Thirteen Answers:");
     println!("");
     println!("Part One: {}", solve_part_one(input));
-
 }
 
 fn solve_part_one(input: String) -> i32 {
@@ -14,7 +13,6 @@ fn solve_part_one(input: String) -> i32 {
     let mut sum = 0;
     for i in blocks {
         let block: Vec<Vec<char>> = i.lines().map(|line| line.chars().collect()).collect();
-        println!("{}", find_reflection(block.clone()));
         sum += find_reflection(block);
     }
     sum
@@ -45,7 +43,6 @@ fn find_reflection(block: Vec<Vec<char>>) -> i32 {
             if row_stack.pop() != Some(line) {
                 valid = false;
             }
-
         }
     }
 
@@ -78,7 +75,6 @@ fn find_reflection(block: Vec<Vec<char>>) -> i32 {
             if row_stack.pop() != Some(column_data) {
                 valid = false;
             }
-
         }
     }
     i
@@ -98,7 +94,8 @@ mod tests {
 .....##.#.#..#.#.
 .#.#####.##..##.#
 ###.###...####...
-....####.#....#.#".to_string();
+....####.#....#.#"
+            .to_string();
 
         let block: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
         assert_eq!(12, find_reflection(block));
@@ -116,7 +113,8 @@ mod tests {
 ########..#
 ######.###.
 ..##..#.##.
-####.......".to_string();
+####......."
+            .to_string();
 
         let block: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
         assert_eq!(700, find_reflection(block));
@@ -138,7 +136,8 @@ mod tests {
 ..##....##...
 .####...##...
 .#..#.##..##.
-##..#########".to_string();
+##..#########"
+            .to_string();
 
         let block: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
         assert_eq!(9, find_reflection(block));

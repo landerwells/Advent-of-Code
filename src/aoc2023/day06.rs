@@ -1,8 +1,6 @@
-use std::env;
 use aochelpers;
 
 pub fn run() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(6, 2023).unwrap();
     let lines: Vec<String> = input.lines().map(String::from).collect();
 
@@ -13,11 +11,14 @@ pub fn run() {
 }
 
 fn solve_part_one(lines: Vec<String>, part_two: bool) -> i128 {
-
-    let times: Vec<i128> = lines[0].split_whitespace().skip(1)
+    let times: Vec<i128> = lines[0]
+        .split_whitespace()
+        .skip(1)
         .map(|s| s.parse().unwrap())
         .collect();
-    let distances: Vec<i128> = lines[1].split_whitespace().skip(1)
+    let distances: Vec<i128> = lines[1]
+        .split_whitespace()
+        .skip(1)
         .map(|s| s.parse().unwrap())
         .collect();
 
@@ -36,7 +37,6 @@ fn solve_part_one(lines: Vec<String>, part_two: bool) -> i128 {
     }
 
     total_ways
-
 }
 
 #[cfg(test)]

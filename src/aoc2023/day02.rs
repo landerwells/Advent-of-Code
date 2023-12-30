@@ -1,9 +1,7 @@
 use aochelpers;
-use std::env;
 use regex::Regex;
 
 pub fn run() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(2, 2023).unwrap();
     let lines: Vec<String> = input.lines().map(String::from).collect();
 
@@ -13,7 +11,6 @@ pub fn run() {
 }
 
 fn solve(lines: Vec<String>) -> i32 {
-
     let mut answer = 0;
     let mut game_number = 1;
 
@@ -70,7 +67,6 @@ fn sum_power_sets(lines: Vec<String>) -> i32 {
 }
 
 fn find_power_set(mut line: String) -> i32 {
-
     let offset = line.find(':').unwrap_or(line.len());
     line.drain(..offset + 2);
 

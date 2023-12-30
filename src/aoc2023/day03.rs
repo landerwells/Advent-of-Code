@@ -1,8 +1,6 @@
-use std::env;
 use aochelpers;
 
 pub fn run() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(3, 2023).unwrap();
     let lines: Vec<String> = input.lines().map(String::from).collect();
 
@@ -18,7 +16,6 @@ pub fn run() {
     println!("Day Three Answers:");
     println!("Part One: {}", answer);
     println!("Part Two: {}", answer_two);
-
 }
 
 fn solve_part_one(grid: &Vec<Vec<char>>) -> i32 {
@@ -72,9 +69,7 @@ fn solve_part_two(grid: &Vec<Vec<char>>) -> i32 {
         }
     }
 
-
     answer
-
 }
 
 fn distinct_numbers(grid: &Vec<Vec<char>>, row: usize, col: usize) -> (i32, i32) {
@@ -83,9 +78,14 @@ fn distinct_numbers(grid: &Vec<Vec<char>>, row: usize, col: usize) -> (i32, i32)
 
     // Define the king's move offsets
     let offsets = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),           (0, 1),
-        (1, -1),  (1, 0),  (1, 1),
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
     ];
 
     let mut numbers: Vec<i32> = Vec::new();
@@ -101,7 +101,9 @@ fn distinct_numbers(grid: &Vec<Vec<char>>, row: usize, col: usize) -> (i32, i32)
                 let mut number_str = String::new();
 
                 // Collect the entire numeric sequence on the right side
-                while new_col < cols as isize && grid[new_row as usize][new_col as usize].is_numeric() {
+                while new_col < cols as isize
+                    && grid[new_row as usize][new_col as usize].is_numeric()
+                {
                     number_str.push(grid[new_row as usize][new_col as usize]);
                     new_col += 1;
                 }
@@ -176,9 +178,14 @@ fn is_valid_char(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
 
     // Define the king's move offsets
     let offsets = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),           (0, 1),
-        (1, -1),  (1, 0),  (1, 1),
+        (-1, -1),
+        (-1, 0),
+        (-1, 1),
+        (0, -1),
+        (0, 1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
     ];
 
     for &(offset_row, offset_col) in &offsets {
@@ -188,8 +195,9 @@ fn is_valid_char(grid: &Vec<Vec<char>>, row: usize, col: usize) -> bool {
         // Check if the new indices are within bounds
         if new_row >= 0 && new_row < rows as isize && new_col >= 0 && new_col < cols as isize {
             // Check if the character is not '.' and not numeric
-            if grid[new_row as usize][new_col as usize] != '.' &&
-               !grid[new_row as usize][new_col as usize].is_numeric() {
+            if grid[new_row as usize][new_col as usize] != '.'
+                && !grid[new_row as usize][new_col as usize].is_numeric()
+            {
                 return true;
             }
         }

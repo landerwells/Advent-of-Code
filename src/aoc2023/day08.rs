@@ -1,7 +1,7 @@
-use std::collections::HashMap;
-use std::env;
 use aochelpers;
 use num::integer::lcm;
+use std::collections::HashMap;
+use std::env;
 
 pub fn run() {
     env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
@@ -13,7 +13,6 @@ pub fn run() {
 }
 
 fn solve_part_one(mut lines: Vec<String>) -> i32 {
-
     let directions = lines.remove(0);
     lines.remove(0);
 
@@ -24,14 +23,23 @@ fn solve_part_one(mut lines: Vec<String>) -> i32 {
 
     for line in &lines {
         // make parts only contain alphabetic characters of line split by whitespace into a vec
-        let cleaned_string: String = line.chars().filter(|&c| c.is_alphabetic() || c.is_whitespace()).collect();
-        let parts: Vec<String> = cleaned_string.split_whitespace().map(|s| s.to_string()).collect();
+        let cleaned_string: String = line
+            .chars()
+            .filter(|&c| c.is_alphabetic() || c.is_whitespace())
+            .collect();
+        let parts: Vec<String> = cleaned_string
+            .split_whitespace()
+            .map(|s| s.to_string())
+            .collect();
         map.insert(parts[0].clone(), (parts[1].clone(), parts[2].clone()));
     }
     let mut count = 0;
 
     loop {
-        let c = directions.chars().nth(count as usize % directions.len()).unwrap();
+        let c = directions
+            .chars()
+            .nth(count as usize % directions.len())
+            .unwrap();
         let left_right = map.get(&next_key).unwrap();
         if c == 'L' {
             next_key = left_right.0.clone();
@@ -47,7 +55,6 @@ fn solve_part_one(mut lines: Vec<String>) -> i32 {
 }
 
 fn solve_part_two(mut lines: Vec<String>) -> i128 {
-
     let directions = lines.remove(0);
     lines.remove(0);
 
@@ -81,14 +88,23 @@ fn solve_part_two(mut lines: Vec<String>) -> i128 {
     for mut next_key in starts {
         for line in &lines {
             // make parts only contain alphabetic characters of line split by whitespace into a vec
-            let cleaned_string: String = line.chars().filter(|&c| c.is_alphabetic() || c.is_whitespace()).collect();
-            let parts: Vec<String> = cleaned_string.split_whitespace().map(|s| s.to_string()).collect();
+            let cleaned_string: String = line
+                .chars()
+                .filter(|&c| c.is_alphabetic() || c.is_whitespace())
+                .collect();
+            let parts: Vec<String> = cleaned_string
+                .split_whitespace()
+                .map(|s| s.to_string())
+                .collect();
             map.insert(parts[0].clone(), (parts[1].clone(), parts[2].clone()));
         }
         let mut count = 0;
 
         loop {
-            let c = directions.chars().nth(count as usize % directions.len()).unwrap();
+            let c = directions
+                .chars()
+                .nth(count as usize % directions.len())
+                .unwrap();
             let left_right = map.get(&next_key).unwrap();
             if c == 'L' {
                 next_key = left_right.0.clone();
@@ -104,7 +120,6 @@ fn solve_part_two(mut lines: Vec<String>) -> i128 {
     }
     // find and return lcm of counts
     counts.iter().fold(1, |acc, &x| lcm(acc, x))
-
 }
 
 #[cfg(test)]

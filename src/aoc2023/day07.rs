@@ -1,28 +1,37 @@
-use std::{error::Error, collections::HashMap, cmp::Ordering};
 use aochelpers;
 use std::env;
+use std::{cmp::Ordering, collections::HashMap, error::Error};
 
 pub fn run() {
     env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(7, 2023).unwrap();
     let hands: HashMap<String, i64> = build_bids(input.as_str());
-    println!("Part 1: {}", play_poker(&hands, |a,b| compare_hands(a, b, "23456789TJQKA")));
-    println!("Part 2: {}", play_poker(&hands, |a,b| compare_hands(a, b, "J23456789TQKA")));
+    println!(
+        "Part 1: {}",
+        play_poker(&hands, |a, b| compare_hands(a, b, "23456789TJQKA"))
+    );
+    println!(
+        "Part 2: {}",
+        play_poker(&hands, |a, b| compare_hands(a, b, "J23456789TQKA"))
+    );
 }
 
-fn play_poker(hands: &HashMap<String, i64>, compare_hands: fn(&&String, &&String) -> Ordering ) -> i64 {
+fn play_poker(
+    hands: &HashMap<String, i64>,
+    compare_hands: fn(&&String, &&String) -> Ordering,
+) -> i64 {
     let mut hand_list: Vec<&String> = hands.keys().collect::<Vec<_>>();
     hand_list.sort_unstable_by(compare_hands);
     let mut total = 0;
     for (pos, hand) in hand_list.iter().enumerate() {
-        total += (pos as i64 +1 ) * hands.get(*hand).unwrap();
+        total += (pos as i64 + 1) * hands.get(*hand).unwrap();
     }
     total
 }
 
 fn build_bids(data: &str) -> HashMap<String, i64> {
     let mut hands = HashMap::new();
-    for hand in data.split('\n'){
+    for hand in data.split('\n') {
         let mut tokens = hand.split(' ');
         let cards = tokens.next().unwrap();
         let bid = tokens.next().unwrap().parse::<i64>().unwrap();
@@ -32,7 +41,7 @@ fn build_bids(data: &str) -> HashMap<String, i64> {
 }
 
 fn score_hand(hand: &str, jokers_wild: bool) -> i64 {
-    let mut card_counts: HashMap<char,i64> = HashMap::new();
+    let mut card_counts: HashMap<char, i64> = HashMap::new();
     for c in hand.chars() {
         *card_counts.entry(c).or_insert(0) += 1
     }
@@ -43,7 +52,7 @@ fn score_hand(hand: &str, jokers_wild: bool) -> i64 {
             }
             let mut card_to_upgrade = 'X';
             let mut most_cards = 0;
-            for (k,v) in card_counts.iter() {
+            for (k, v) in card_counts.iter() {
                 if *k != 'J' && most_cards < *v {
                     card_to_upgrade = *k;
                     most_cards = *v;
@@ -55,15 +64,27 @@ fn score_hand(hand: &str, jokers_wild: bool) -> i64 {
     }
     match card_counts.len() {
         1 => 7,
-        2 => if card_counts.values().any(|c| *c == 4) {6} else {5},
-        3 => if card_counts.values().any(|c| *c == 3) {4} else {3}
+        2 => {
+            if card_counts.values().any(|c| *c == 4) {
+                6
+            } else {
+                5
+            }
+        }
+        3 => {
+            if card_counts.values().any(|c| *c == 3) {
+                4
+            } else {
+                3
+            }
+        }
         4 => 2,
         5 => 1,
-        _ => unimplemented!()
+        _ => unimplemented!(),
     }
 }
 
-fn compare_hands(left: &&String  , right: &&String, cards_order: &str ) -> Ordering {
+fn compare_hands(left: &&String, right: &&String, cards_order: &str) -> Ordering {
     let jokers_wild = cards_order.starts_with('J');
     let left_score = score_hand(left, jokers_wild);
     let right_score = score_hand(right, jokers_wild);
@@ -73,14 +94,22 @@ fn compare_hands(left: &&String  , right: &&String, cards_order: &str ) -> Order
             let mut right_chars = right.chars();
             for lc in left.chars() {
                 let rc = right_chars.next().unwrap();
-                match cards_order.chars().position(|c| c == lc).cmp(&cards_order.chars().position(|c| c == rc)) {
-                    Ordering::Less => {return Ordering::Less;}
-                    Ordering::Greater => {return Ordering::Greater;}
+                match cards_order
+                    .chars()
+                    .position(|c| c == lc)
+                    .cmp(&cards_order.chars().position(|c| c == rc))
+                {
+                    Ordering::Less => {
+                        return Ordering::Less;
+                    }
+                    Ordering::Greater => {
+                        return Ordering::Greater;
+                    }
                     _ => {}
                 };
             }
             Ordering::Equal
-        },
+        }
         Ordering::Greater => Ordering::Greater,
     }
 }
@@ -107,12 +136,18 @@ QQQJA 483";
     #[test]
     fn test_part1() {
         let hands = build_bids(DATA);
-        assert_eq!(play_poker(&hands, |a,b| compare_hands(a, b, "23456789TJQKA")),6440);
+        assert_eq!(
+            play_poker(&hands, |a, b| compare_hands(a, b, "23456789TJQKA")),
+            6440
+        );
     }
 
     #[test]
     fn test_part2() {
         let hands = build_bids(DATA);
-        assert_eq!(play_poker(&hands, |a,b| compare_hands(a, b, "J23456789TQKA")),5905);
+        assert_eq!(
+            play_poker(&hands, |a, b| compare_hands(a, b, "J23456789TQKA")),
+            5905
+        );
     }
 }

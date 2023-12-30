@@ -1,6 +1,6 @@
+use aochelpers;
 use std::collections::HashSet;
 use std::env;
-use aochelpers;
 
 pub fn run() {
     env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
@@ -97,10 +97,16 @@ mod tests {
 
     #[test]
     fn test_line_points() {
-        assert_eq!(8, line_points("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string()));
+        assert_eq!(
+            8,
+            line_points("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string())
+        );
     }
     #[test]
     fn test_winning_numbers() {
-        assert_eq!(4, winning_numbers("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string()));
+        assert_eq!(
+            4,
+            winning_numbers("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string())
+        );
     }
 }
