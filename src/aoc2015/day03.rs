@@ -7,7 +7,7 @@ pub fn run() {
     let input: String = aochelpers::get_daily_input(3, 2015).unwrap();
     println!("Day Three Answers:");
     println!("Part One: {}", solve_part_one(input.clone()));
-    println!("Part Two: {}", solve_part_two(input));
+    // println!("Part Two: {}", solve_part_two(input));
 }
 
 fn solve_part_one(input: String) -> i32 {
@@ -68,6 +68,6 @@ fn solve_part_one(input: String) -> i32 {
     map.len() as i32
 }
 
-fn solve_part_two(input: String) -> i32 {
-    0
-}
+// fn solve_part_two(input: String) -> i32 {
+//     0
+// }

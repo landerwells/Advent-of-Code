@@ -14,6 +14,7 @@ pub fn run() {
     let answer = solve_part_one(&grid);
     let answer_two = solve_part_two(&grid);
     println!("Day Three Answers:");
+    println!("");
     println!("Part One: {}", answer);
     println!("Part Two: {}", answer_two);
 }

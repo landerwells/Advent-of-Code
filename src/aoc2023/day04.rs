@@ -1,9 +1,7 @@
 use aochelpers;
 use std::collections::HashSet;
-use std::env;
 
 pub fn run() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
     let input = aochelpers::get_daily_input(4, 2023).unwrap();
     let lines: Vec<String> = input.lines().map(String::from).collect();
 
@@ -33,7 +31,7 @@ fn solve_part_two(lines: Vec<String>) -> i32 {
 
     // Vector to count how many cards total we have
     let mut cards: Vec<i32> = vec![1; lines.len()];
-    for line in &lines {
+    for _line in &lines {
         while cards[line_number] != 0 {
             let current_points: usize = winning_numbers_vector[line_number] as usize;
             for i in 0..current_points {
@@ -72,10 +70,8 @@ fn winning_numbers(line: String) -> i32 {
         }
         if first_half {
             set.insert(part);
-        } else {
-            if set.contains(part) {
-                current_points += 1;
-            }
+        } else if set.contains(part) {
+            current_points += 1;
         }
     }
     current_points
@@ -84,16 +80,6 @@ fn winning_numbers(line: String) -> i32 {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn test_solve_part_one() {
-        // assert_eq!(13, solve_part_one("src/input2.txt".to_string()));
-    }
-
-    #[test]
-    fn test_solve_part_two() {
-        // assert_eq!(30, solve_part_two("src/input2.txt".to_string()));
-    }
 
     #[test]
     fn test_line_points() {

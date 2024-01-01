@@ -8,7 +8,6 @@ pub fn run() {
     println!("");
     println!("Part One: {}", solve_part_one(lines.clone()));
     println!("Part Two: {}", solve_part_two(input));
-    println!("");
 }
 
 pub fn solve_part_two(input: String) -> u32 {

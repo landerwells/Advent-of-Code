@@ -6,7 +6,7 @@ const LEFT: i32 = 3;
 const RIGHT: i32 = 1;
 const UP: i32 = 0;
 const DOWN: i32 = 2;
-type grid_point = (f64, f64);
+type GridPoint = (f64, f64);
 
 pub fn run() {
     env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
@@ -20,7 +20,7 @@ pub fn run() {
 fn solve(input: String, part_one: bool) -> i32 {
     let grid: Vec<Vec<char>> = input.lines().map(|line| line.chars().collect()).collect();
 
-    let mut points: Vec<grid_point> = Vec::new();
+    let mut points: Vec<GridPoint> = Vec::new();
     let loop_length = finish_loop((43, 8), grid, UP, &mut points);
     if part_one {
         return loop_length / 2;
@@ -32,7 +32,7 @@ fn solve(input: String, part_one: bool) -> i32 {
     num_interior_points
 }
 
-fn interior_area(points: Vec<grid_point>) -> f64 {
+fn interior_area(points: Vec<GridPoint>) -> f64 {
     let padded_points = [&points[..], &points[0..1]].concat(); // form pair with last and first
     let area_sum: f64 = padded_points
         .iter()
@@ -47,7 +47,7 @@ fn finish_loop(
     start_pos: (usize, usize),
     grid: Vec<Vec<char>>,
     start_direction: i32,
-    points: &mut Vec<grid_point>,
+    points: &mut Vec<GridPoint>,
 ) -> i32 {
     let mut stack: VecDeque<(usize, usize, i32, i32)> = VecDeque::new();
     stack.push_back((start_pos.0, start_pos.1, start_direction, 1));

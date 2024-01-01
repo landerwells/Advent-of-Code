@@ -6,6 +6,7 @@ pub fn run() {
     let lines: Vec<String> = input.lines().map(String::from).collect();
 
     println!("Day Two Answers:");
+    println!("");
     println!("Part One: {}", solve(lines.clone()));
     println!("Part Two: {}", sum_power_sets(lines.clone()));
 }
