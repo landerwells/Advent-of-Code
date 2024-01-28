@@ -1,18 +1,27 @@
 use aochelpers;
+use indoc::indoc;
 use num::integer::lcm;
 use std::collections::HashMap;
-use std::env;
 
 pub fn run() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
-    let input = aochelpers::get_daily_input(8, 2023).unwrap();
-    let lines: Vec<String> = input.lines().map(String::from).collect();
+    let test_input = indoc!(
+        "LLR
 
-    println!("Part One: {}", solve_part_one(lines.clone()));
-    println!("Part Two: {}", solve_part_two(lines.clone()));
+    AAA = (BBB, BBB)
+    BBB = (AAA, ZZZ)
+    ZZZ = (ZZZ, ZZZ)"
+    );
+    let input = aochelpers::get_daily_input(8, 2023).unwrap();
+
+    println!("Test: {}", part_one(&test_input.to_string()));
+    println!("Part One: {}", part_one(&input));
+    println!("---");
+    println!("Test: {}", part_two(&test_input.to_string()));
+    println!("Part Two: {}", part_two(&input));
 }
 
-fn solve_part_one(mut lines: Vec<String>) -> i32 {
+fn part_one(input: &String) -> i32 {
+    let mut lines: Vec<String> = input.lines().map(String::from).collect();
     let directions = lines.remove(0);
     lines.remove(0);
 
@@ -54,7 +63,8 @@ fn solve_part_one(mut lines: Vec<String>) -> i32 {
     count
 }
 
-fn solve_part_two(mut lines: Vec<String>) -> i128 {
+fn part_two(input: &String) -> i128 {
+    let mut lines: Vec<String> = input.lines().map(String::from).collect();
     let directions = lines.remove(0);
     lines.remove(0);
 
@@ -120,15 +130,4 @@ fn solve_part_two(mut lines: Vec<String>) -> i128 {
     }
     // find and return lcm of counts
     counts.iter().fold(1, |acc, &x| lcm(acc, x))
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_solve_part_one() {
-        // assert_eq!(6, solve_part_one("testinput.txt"));
-        // assert_eq!(2, solve_part_one("testinput2.txt"));
-    }
 }

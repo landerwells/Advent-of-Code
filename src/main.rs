@@ -20,6 +20,7 @@ fn main() {
 
 fn run_year(year: &str) {
     match year {
+        "2015" => aoc2015::run_all(),
         // "2021" => year2021::run_all(),
         "2023" => aoc2023::run_all(),
         // ... handle other years
@@ -32,6 +33,8 @@ fn run_day(year: &str, day: &str) {
         ("2015", "01") => aoc2015::day01::run(),
         ("2015", "02") => aoc2015::day02::run(),
         ("2015", "03") => aoc2015::day03::run(),
+        ("2015", "05") => aoc2015::day05::run(),
+        ("2015", "06") => aoc2015::day06::run(),
         ("2022", "01") => aoc2022::day01::run(),
         ("2023", "01") => aoc2023::day01::run(),
         ("2023", "02") => aoc2023::day02::run(),

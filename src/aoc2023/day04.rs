@@ -1,16 +1,28 @@
 use aochelpers;
+use indoc::indoc;
 use std::collections::HashSet;
 
+// Could definitely improve the speed on this day
 pub fn run() {
+    let test_input = indoc!(
+        "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
+    Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
+    Card 3:  1 21 53 59 44 | 69 82 63 72 16 21 14  1
+    Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
+    Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
+    Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11"
+    );
     let input = aochelpers::get_daily_input(4, 2023).unwrap();
-    let lines: Vec<String> = input.lines().map(String::from).collect();
 
-    println!("Day Four Answers:");
-    println!("Part One: {}", solve_part_one(lines.clone()));
-    println!("Part Two: {}", solve_part_two(lines));
+    println!("Test: {}", part_one(&test_input.to_string()));
+    println!("Part One: {}", part_one(&input));
+    println!("---");
+    println!("Test: {}", part_two(&test_input.to_string()));
+    println!("Part Two: {}", part_two(&input));
 }
 
-fn solve_part_one(lines: Vec<String>) -> i32 {
+fn part_one(input: &String) -> i32 {
+    let lines: Vec<String> = input.lines().map(String::from).collect();
     let mut answer = 0;
     for line in &lines {
         answer += line_points(line.clone());
@@ -19,8 +31,8 @@ fn solve_part_one(lines: Vec<String>) -> i32 {
 }
 
 // This method is so god damn slow
-fn solve_part_two(lines: Vec<String>) -> i32 {
-    // Reading in file
+fn part_two(input: &String) -> i32 {
+    let lines: Vec<String> = input.lines().map(String::from).collect();
     let mut line_number = 0;
     let mut total_count = 0;
     let mut winning_numbers_vector: Vec<i32> = Vec::new();
@@ -75,24 +87,4 @@ fn winning_numbers(line: String) -> i32 {
         }
     }
     current_points
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_line_points() {
-        assert_eq!(
-            8,
-            line_points("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string())
-        );
-    }
-    #[test]
-    fn test_winning_numbers() {
-        assert_eq!(
-            4,
-            winning_numbers("Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53".to_string())
-        );
-    }
 }

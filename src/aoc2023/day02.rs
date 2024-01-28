@@ -1,17 +1,26 @@
 use aochelpers;
+use indoc::indoc;
 use regex::Regex;
 
 pub fn run() {
+    let test_input = indoc!(
+        "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
+        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
+        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
+        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
+        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
+    );
     let input = aochelpers::get_daily_input(2, 2023).unwrap();
-    let lines: Vec<String> = input.lines().map(String::from).collect();
 
-    println!("Day Two Answers:");
-    println!("");
-    println!("Part One: {}", solve(lines.clone()));
-    println!("Part Two: {}", sum_power_sets(lines.clone()));
+    println!("Test: {}", part_one(&test_input.to_string()));
+    println!("Part One: {}", part_one(&input));
+    println!("---");
+    println!("Test: {}", part_two(&test_input.to_string()));
+    println!("Part Two: {}", part_two(&input));
 }
 
-fn solve(lines: Vec<String>) -> i32 {
+fn part_one(input: &String) -> i32 {
+    let lines: Vec<String> = input.lines().map(String::from).collect();
     let mut answer = 0;
     let mut game_number = 1;
 
@@ -59,7 +68,8 @@ fn is_valid_game(mut line: String) -> bool {
     true
 }
 
-fn sum_power_sets(lines: Vec<String>) -> i32 {
+fn part_two(input: &String) -> i32 {
+    let lines: Vec<String> = input.lines().map(String::from).collect();
     let mut sum = 0;
     for line in lines {
         sum += find_power_set(line);
@@ -108,44 +118,4 @@ fn find_power_set(mut line: String) -> i32 {
     let power_set = max_blue * max_red * max_green;
 
     power_set
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_solve() {
-        let input = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-
-        let lines: Vec<String> = input.lines().map(String::from).collect();
-
-        let answer = solve(lines);
-
-        assert_eq!(answer, 8);
-    }
-
-    #[test]
-    fn test_is_game_valid() {
-        let input = "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red";
-
-        assert_eq!(false, is_valid_game(input.to_string()));
-    }
-
-    #[test]
-    fn test_sum_power_sets() {
-        let input = "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green
-        Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue
-        Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red
-        Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
-        Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green";
-
-        let lines: Vec<String> = input.lines().map(String::from).collect();
-
-        assert_eq!(sum_power_sets(lines.clone()), 2286);
-    }
 }

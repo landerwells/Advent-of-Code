@@ -3,11 +3,11 @@ use aochelpers;
 pub fn run() {
     let input: String = aochelpers::get_daily_input(2, 2015).unwrap();
     println!("Day Two Answers:");
-    println!("Part One: {}", solve_part_one(input.clone()));
-    println!("Part Two: {}", solve_part_two(input));
+    println!("Part One: {}", solve_part_one(&input));
+    println!("Part Two: {}", solve_part_two(&input));
 }
 
-fn solve_part_one(input: String) -> i32 {
+fn solve_part_one(input: &String) -> i32 {
     let dimension_list: Vec<String> = input.lines().map(String::from).collect();
 
     let mut sum = 0;
@@ -17,7 +17,7 @@ fn solve_part_one(input: String) -> i32 {
     sum
 }
 
-fn solve_part_two(input: String) -> i32 {
+fn solve_part_two(input: &String) -> i32 {
     let dimension_list: Vec<String> = input.lines().map(String::from).collect();
 
     let mut sum = 0;
@@ -45,7 +45,6 @@ fn calculate_ribbon(dimensions: String) -> i32 {
     {
         dim_array.remove(max_index);
     }
-    println!("{:?}", dim_array);
     let perimeter = dim_array.iter().map(|x| x * 2).sum::<i32>();
 
     volume + perimeter

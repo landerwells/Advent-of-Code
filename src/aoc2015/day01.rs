@@ -13,10 +13,10 @@ pub fn run() {
             }
         })
     );
-    println!("Part One: {}", solve_part_two(input));
+    println!("Part One: {}", solve_part_two(&input));
 }
 
-fn solve_part_two(input: String) -> i32 {
+fn solve_part_two(input: &String) -> i32 {
     let mut count = 0;
     let mut index = 1;
     for c in input.chars() {
