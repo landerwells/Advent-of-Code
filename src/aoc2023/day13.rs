@@ -1,10 +1,9 @@
 use aochelpers;
 
-
 pub fn run() {
     let input = aochelpers::get_daily_input(13, 2023).unwrap();
     println!("Day Thirteen Answers:");
-    println!("");
+    println!();
     println!("Part One: {}", solve_part_one(input));
 }
 

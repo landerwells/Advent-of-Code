@@ -3,7 +3,7 @@ use indoc::indoc;
 
 pub fn run() {
     let test_input = indoc!("");
-    let input: String = aochelpers::get_daily_input().unwrap();
+    let input: String = aochelpers::get_daily_input(8, 2015).unwrap();
 
     println!("Test: {}", part_one(&test_input.to_string()));
     println!("Part One: {}", part_one(&input));

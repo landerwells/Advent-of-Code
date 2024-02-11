@@ -1,14 +1,13 @@
 use std::env;
 
-mod utils;
-// mod 2022;
 mod aoc2015;
 mod aoc2022;
 mod aoc2023;
+mod utils;
 // ... import other year modules
 
 fn main() {
-    env::set_var("AOCTOKEN", "53616c7465645f5ff30847a61c609fca0373a9571a633ffb28d7209b03e95add495275dc91b67497d11eadc584912ffe03e716e3c719655e3acfc9542ae5a5f7");
+    // env::set_var("AOCTOKEN", "53616c7465645f5f0c329dd8a6134bb0c7bf859a1b2ef920b2b45574716e4c897139e9b7dd20d62faed6a4b21a8922fdc739ba3d76e0d4a5fe300589d38e1ca2");
     let args: Vec<String> = env::args().collect();
 
     match args.len() {
@@ -21,7 +20,7 @@ fn main() {
 fn run_year(year: &str) {
     match year {
         "2015" => aoc2015::run_all(),
-        // "2021" => year2021::run_all(),
+        "2022" => aoc2022::run_all(),
         "2023" => aoc2023::run_all(),
         // ... handle other years
         _ => eprintln!("Invalid year"),
@@ -35,7 +34,9 @@ fn run_day(year: &str, day: &str) {
         ("2015", "03") => aoc2015::day03::run(),
         ("2015", "05") => aoc2015::day05::run(),
         ("2015", "06") => aoc2015::day06::run(),
+        ("2015", "07") => aoc2015::day07::run(),
         ("2022", "01") => aoc2022::day01::run(),
+        ("2022", "10") => aoc2022::day10::run(),
         ("2023", "01") => aoc2023::day01::run(),
         ("2023", "02") => aoc2023::day02::run(),
         ("2023", "03") => aoc2023::day03::run(),

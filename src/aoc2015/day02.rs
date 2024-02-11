@@ -7,7 +7,7 @@ pub fn run() {
     println!("Part Two: {}", solve_part_two(&input));
 }
 
-fn solve_part_one(input: &String) -> i32 {
+fn solve_part_one(input: &str) -> i32 {
     let dimension_list: Vec<String> = input.lines().map(String::from).collect();
 
     let mut sum = 0;
@@ -17,7 +17,7 @@ fn solve_part_one(input: &String) -> i32 {
     sum
 }
 
-fn solve_part_two(input: &String) -> i32 {
+fn solve_part_two(input: &str) -> i32 {
     let dimension_list: Vec<String> = input.lines().map(String::from).collect();
 
     let mut sum = 0;

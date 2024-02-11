@@ -14,35 +14,16 @@ pub mod day13;
 
 pub fn run_all() {
     day01::run();
-    print_format();
     day02::run();
-    print_format();
     day03::run();
-    print_format();
     day04::run();
-    print_format();
     day05::run();
-    print_format();
     day06::run();
-    print_format();
     day07::run();
-    print_format();
     day08::run();
-    print_format();
     day09::run();
-    print_format();
     day10::run();
-    print_format();
     day11::run();
-    print_format();
     day12::run();
-    print_format();
     day13::run();
-    print_format();
-}
-
-fn print_format() {
-    println!("");
-    println!("---");
-    println!("");
 }

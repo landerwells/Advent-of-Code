@@ -6,9 +6,10 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-aochelpers = "0.4.0"
+aochelpers = "0.6.1"
 color-eyre = "0.6.2"
 crypto = "0.5.1"
+fancy-regex = "0.13.0"
 indoc = "2.0.4"
 num = "0.4.1"
 regex = "1.10.2"
